@@ -8,39 +8,44 @@ const appleEase = [0.25, 0.1, 0.25, 1];
 const About = () => {
   const skills = [
     "TypeScript",
-    "JavaScript",
+    "JavaScript (ES2024)",
     "C++",
     "HTML5",
     "CSS3",
     "React.js",
-    "Next.js 14",
+    "Next.js 14 (App Router)",
     "Tailwind CSS",
     "Shadcn/UI",
-    "Radix UI",
     "Zustand",
-    "TanStack React Query",
+    "TanStack Query",
     "React Hook Form",
     "Zod",
     "Node.js",
     "Express.js",
+    "NestJS",
     "REST APIs",
     "JWT",
     "NextAuth",
-    "Stripe (Checkout + Webhooks)",
+    "Stripe (Webhooks)",
     "Socket.io",
     "Nodemailer",
     "PostgreSQL",
     "MongoDB",
     "Prisma ORM",
     "Mongoose",
-    "Redis (Upstash)",
-    "Cloudinary",
-    "Firebase",
+    "Redis (Caching, Rate Limiting)",
+    "Docker",
+    "Docker Compose",
+    "Nginx",
+    "GitHub Actions (CI/CD)",
+    "VPS Deployment",
+    "Linux/Ubuntu",
+    "AWS",
     "Git",
-    "GitHub",
-    "Vercel",
     "Postman",
     "Swagger/OpenAPI",
+    "Cloudinary",
+    "Firebase",
   ];
 
   return (
@@ -77,17 +82,16 @@ const About = () => {
             About
           </p>
           <h2 className="text-[clamp(40px,6vw,48px)] font-bold leading-tight tracking-[-0.03em] text-[#F5F5F7]">
-            Building production-ready software with a clean engineering mindset.
+            Full-Stack Developer
           </h2>
           <p className="mt-6 text-[17px] leading-[1.6] text-[#86868B]">
-            Full-Stack Web Developer focused on building scalable,
-            high-performance web applications with modern JavaScript. I work
-            primarily with React and Next.js on the frontend, and Node.js on the
-            backend — designing clean architectures, efficient APIs, and
-            maintainable systems. I leverage AI-assisted development workflows
-            to move faster, own projects end-to-end, and ship production-ready
-            software confidently. Always building. Always learning. Always
-            improving.
+            I work with <strong className="text-[#F5F5F7]">React</strong> and{" "}
+            <strong className="text-[#F5F5F7]">Next.js</strong> on the frontend, and{" "}
+            <strong className="text-[#F5F5F7]">Node.js</strong> on the backend — designing
+            modular architectures, optimizing systems under real load, and shipping
+            production-ready software. I integrate AI-assisted development into my workflow
+            to move faster and own projects end-to-end, from API design through deployment
+            on VPS.
           </p>
 
           <div className="mt-10">

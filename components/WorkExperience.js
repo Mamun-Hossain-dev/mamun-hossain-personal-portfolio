@@ -9,7 +9,7 @@ const experiences = [
   {
     company: "Betopia Group",
     role: "Full-Stack Developer",
-    period: "Jul 2025 - Present",
+    period: "Jul 2025 – Present",
     location: "Dhaka, Bangladesh",
     icon: BriefcaseBusiness,
     points: [
@@ -21,19 +21,19 @@ const experiences = [
   {
     company: "UpSkill Digital Agency",
     role: "Full-Stack Developer (Part-time)",
-    period: "Feb 2025 - Jun 2025",
+    period: "Feb 2025 – Jun 2025",
     location: "Dhaka, Bangladesh",
     icon: BriefcaseBusiness,
     points: [
-      "Built SEO-optimized full-stack web applications using the MERN stack for agency clients.",
+      "Built SEO-optimized full-stack web applications using the MERN stack for agency clients, delivering 3+ projects on schedule.",
       "Integrated Firebase and Clerk authentication with dynamic routing in Next.js projects.",
-      "Delivered responsive, high-performance UIs in close collaboration with designers.",
+      "Shipped responsive, pixel-perfect UIs with Tailwind CSS and Shadcn/UI in close collaboration with designers.",
     ],
   },
   {
     company: "Northern University Computer Club",
     role: "Frontend Instructor",
-    period: "Jan 2024 - Jan 2025",
+    period: "Jan 2024 – Jan 2025",
     location: "Dhaka, Bangladesh",
     icon: GraduationCap,
     points: [

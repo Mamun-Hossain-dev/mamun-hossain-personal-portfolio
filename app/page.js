@@ -1,31 +1,20 @@
 import About from "@/components/About";
-import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
-import Navbar from "@/components/Navbar";
-import Services from "@/components/Services";
 import WorkExperience from "@/components/WorkExperience";
+import Services from "@/components/Services";
+import FeaturedProjects from "@/components/FeaturedProjects";
+import BlogsSection from "@/components/BlogsSection";
 import React from "react";
 
 const page = () => {
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
-      {/* navbar section */}
-      {/* <Navbar /> */}
-
-      {/* Hero section */}
+    <div className="min-h-screen bg-[#000000]">
       <Hero />
-
-      {/* about section */}
       <About />
-
-      {/* work experience section */}
       <WorkExperience />
-
-      {/* services section */}
       <Services />
-
-      {/* footer section */}
-      {/* <Footer /> */}
+      <FeaturedProjects />
+      <BlogsSection />
     </div>
   );
 };

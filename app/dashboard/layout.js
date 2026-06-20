@@ -44,11 +44,11 @@ export default function DashboardLayout({ children }) {
           `}
           </Script>
         )}
-      <div className="flex h-screen bg-gray-900 text-gray-100">
+      <div className="flex h-screen bg-[#0a0a0a] text-[#F5F5F7]">
         <Sidebar />
         <div className="flex flex-col flex-1 overflow-hidden">
           <Topbar user={user} />
-          <main className="flex-1 overflow-y-auto p-4 md:p-6 bg-gray-900">
+          <main className="flex-1 overflow-y-auto p-4 md:p-6 bg-[#0a0a0a]">
             {children}
           </main>
         </div>

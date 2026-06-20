@@ -20,7 +20,7 @@ const Navbar = () => {
   const navItems = [
     { name: "Home", href: "/" },
     { name: "Projects", href: "/projects" },
-    { name: "Case Studies", href: "/case-studies" },
+    { name: "Blog", href: "/blog" },
     { name: "Contact", href: "/contact" },
   ];
 
@@ -54,15 +54,25 @@ const Navbar = () => {
           </Link>
 
           <div className="hidden items-center gap-8 md:flex">
-            {navItems.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className="nav-link-underline relative text-sm text-[#86868B] transition-colors hover:text-[#F5F5F7]"
-              >
-                {item.name}
-              </Link>
-            ))}
+            {navItems.map((item) => {
+              const isActive =
+                item.href === "/"
+                  ? pathname === "/"
+                  : pathname.startsWith(item.href);
+              return (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className={`nav-link-underline relative text-sm transition-colors ${
+                    isActive
+                      ? "text-[#F5F5F7]"
+                      : "text-[#86868B] hover:text-[#F5F5F7]"
+                  }`}
+                >
+                  {item.name}
+                </Link>
+              );
+            })}
           </div>
 
           <div className="hidden items-center md:flex">
@@ -70,7 +80,7 @@ const Navbar = () => {
               <div className="relative">
                 <button
                   onClick={() => setProfileOpen((v) => !v)}
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/[0.04] text-[#F5F5F7] transition-colors hover:bg-white/[0.08]"
+                  className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-white/15 bg-white/[0.04] text-[#F5F5F7] transition-colors hover:bg-white/[0.08]"
                   aria-label="Open profile menu"
                 >
                   <UserIcon size={20} />
@@ -94,7 +104,7 @@ const Navbar = () => {
                           setProfileOpen(false);
                           router.push("/dashboard");
                         }}
-                        className="mb-2 block w-full rounded-lg px-4 py-2 text-left text-sm text-[#2997FF] transition-colors hover:bg-white/[0.06]"
+                        className="mb-2 block w-full cursor-pointer rounded-lg px-4 py-2 text-left text-sm text-[#2997FF] transition-colors hover:bg-white/[0.06]"
                       >
                         Admin Dashboard
                       </button>
@@ -104,7 +114,7 @@ const Navbar = () => {
                         setProfileOpen(false);
                         logout();
                       }}
-                      className="flex w-full items-center rounded-lg px-4 py-2 text-left text-sm text-red-300 transition-colors hover:bg-white/[0.06]"
+                      className="flex w-full cursor-pointer items-center rounded-lg px-4 py-2 text-left text-sm text-red-300 transition-colors hover:bg-white/[0.06]"
                     >
                       <LogOut size={16} className="mr-2" /> Logout
                     </button>
@@ -125,7 +135,7 @@ const Navbar = () => {
           </div>
 
           <button
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-[#F5F5F7] md:hidden"
+            className="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-white/15 text-[#F5F5F7] md:hidden"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -144,29 +154,39 @@ const Navbar = () => {
               className="mt-4 overflow-hidden rounded-[18px] border border-[#2C2C2E] bg-[#1C1C1E] md:hidden"
             >
               <div className="space-y-1 p-3">
-                {navItems.map((item) => (
-                  <Link
-                    key={item.name}
-                    href={item.href}
-                    className="block rounded-xl px-4 py-3 text-[#86868B] transition-colors hover:bg-white/[0.06] hover:text-[#F5F5F7]"
-                  >
-                    {item.name}
-                  </Link>
-                ))}
+                {navItems.map((item) => {
+                  const isActive =
+                    item.href === "/"
+                      ? pathname === "/"
+                      : pathname.startsWith(item.href);
+                  return (
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      className={`block rounded-xl px-4 py-3 transition-colors hover:bg-white/[0.06] hover:text-[#F5F5F7] ${
+                        isActive
+                          ? "bg-white/[0.06] text-[#F5F5F7]"
+                          : "text-[#86868B]"
+                      }`}
+                    >
+                      {item.name}
+                    </Link>
+                  );
+                })}
                 <div className="border-t border-white/[0.08] pt-3">
                   {user ? (
                     <>
                       {role === "admin" && (
                         <button
                           onClick={() => router.push("/dashboard")}
-                          className="block w-full rounded-xl px-4 py-3 text-left text-[#2997FF] transition-colors hover:bg-white/[0.06]"
+                          className="block w-full cursor-pointer rounded-xl px-4 py-3 text-left text-[#2997FF] transition-colors hover:bg-white/[0.06]"
                         >
                           Admin Dashboard
                         </button>
                       )}
                       <button
                         onClick={() => logout()}
-                        className="flex w-full items-center rounded-xl px-4 py-3 text-left text-red-300 transition-colors hover:bg-white/[0.06]"
+                        className="flex w-full cursor-pointer items-center rounded-xl px-4 py-3 text-left text-red-300 transition-colors hover:bg-white/[0.06]"
                       >
                         <LogOut size={16} className="mr-2" /> Logout
                       </button>

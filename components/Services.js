@@ -9,20 +9,20 @@ const Services = () => {
   const skillGroups = [
     {
       title: "Languages",
-      items: ["TypeScript", "JavaScript", "C++", "HTML5", "CSS3"],
+      items: ["TypeScript", "JavaScript (ES2024)", "C++", "HTML5", "CSS3"],
     },
     {
       title: "Frontend",
       items: [
         "React.js",
-        "Next.js 14",
+        "Next.js 14 (App Router)",
         "Tailwind CSS",
         "Shadcn/UI",
-        "Radix UI",
         "Zustand",
-        "TanStack React Query",
+        "TanStack Query",
         "React Hook Form",
         "Zod",
+        "Framer Motion",
       ],
     },
     {
@@ -30,10 +30,11 @@ const Services = () => {
       items: [
         "Node.js",
         "Express.js",
+        "NestJS (familiar)",
         "REST APIs",
         "JWT",
         "NextAuth",
-        "Stripe (Checkout + Webhooks)",
+        "Stripe (Webhooks)",
         "Socket.io",
         "Nodemailer",
       ],
@@ -45,28 +46,31 @@ const Services = () => {
         "MongoDB",
         "Prisma ORM",
         "Mongoose",
-        "Redis (Upstash)",
+        "Redis (Caching, Rate Limiting)",
+      ],
+    },
+    {
+      title: "DevOps & Infrastructure",
+      items: [
+        "Docker",
+        "Docker Compose",
+        "Nginx (Reverse Proxy, Static Serving)",
+        "GitHub Actions (CI/CD)",
+        "VPS Deployment",
+        "Linux/Ubuntu",
       ],
     },
     {
       title: "Cloud & Tools",
       items: [
+        "AWS (Exploring)",
         "Cloudinary",
         "Firebase",
+        "Vercel",
         "Git",
         "GitHub",
-        "Vercel",
         "Postman",
         "Swagger/OpenAPI",
-      ],
-    },
-    {
-      title: "Currently Exploring",
-      items: [
-        "Docker",
-        "CI/CD pipelines",
-        "deployment workflows",
-        "system design",
       ],
     },
   ];

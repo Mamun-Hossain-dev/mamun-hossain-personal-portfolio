@@ -4,9 +4,8 @@ import { motion } from "framer-motion";
 
 const navItems = [
   { name: "Projects", href: "/dashboard/projects", icon: "🗂️" },
-  { name: "Case Studies", href: "/dashboard/case-studies", icon: "📄" },
+  { name: "Blog Posts", href: "/dashboard/blogs", icon: "📝" },
   { name: "Analytics", href: "/dashboard", icon: "📊" },
-  { name: "eBooks", href: "/dashboard/ebooks", icon: "📚", disabled: true },
 ];
 
 export default function Sidebar() {
