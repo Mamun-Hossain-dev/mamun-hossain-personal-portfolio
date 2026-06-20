@@ -13,6 +13,7 @@ import {
   Twitter,
   Linkedin,
   Github,
+  ChevronDown,
 } from "lucide-react";
 
 const appleEase = [0.25, 0.1, 0.25, 1];
@@ -142,19 +143,19 @@ const ContactSection = () => {
 
   const contactInfo = [
     {
-      icon: <Mail className="text-[#2997FF]" size={22} />,
+      icon: <Mail size={22} />,
       title: "Email",
       detail: "mamundev1281@gmail.com",
       href: "mailto:mamundev1281@gmail.com",
     },
     {
-      icon: <Phone className="text-[#2997FF]" size={22} />,
+      icon: <Phone size={22} />,
       title: "Phone",
       detail: "+880-1640-571091",
       href: "tel:+8801640571091",
     },
     {
-      icon: <MapPin className="text-[#2997FF]" size={22} />,
+      icon: <MapPin size={22} />,
       title: "Location",
       detail: "Uttara, Dhaka, Bangladesh",
     },
@@ -163,45 +164,51 @@ const ContactSection = () => {
   return (
     <section
       id="connect"
-      className="border-t border-white/[0.08] bg-[#0a0a0a] py-32"
+      className="border-t border-white/[0.08] bg-[#0a0a0a] py-28 md:py-32"
     >
       <div className="mx-auto max-w-6xl px-6">
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, ease: appleEase }}
           viewport={{ once: true, margin: "-100px" }}
-          className="mb-16"
+          className="mb-16 md:mb-20"
         >
-          <p className="mb-4 text-xs font-bold uppercase tracking-widest text-[#86868B]">
+          <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-[#6B6B70]">
             Contact
           </p>
-          <h1 className="max-w-3xl text-[clamp(40px,6vw,48px)] font-bold leading-tight tracking-[-0.03em] text-[#F5F5F7]">
-            Let&apos;s build something production-ready.
+          <h1 className="max-w-3xl text-[clamp(36px,5vw,48px)] font-bold leading-[1.1] tracking-[-0.03em] text-[#F5F5F7]">
+            {`Let's build something production-ready.`}
           </h1>
-          <p className="mt-5 max-w-2xl text-[17px] leading-[1.6] text-[#86868B]">
-            Send a message about your project, backend architecture, or full-stack
-            product needs.
+          <p className="mt-5 max-w-2xl text-[17px] leading-[1.7] text-[#86868B]">
+            {`Have a project in mind or want to discuss backend architecture, full-stack development, or anything tech-related? Send a message and I'll get back to you within 24 hours.`}
           </p>
         </motion.div>
 
-        <div className="grid gap-10 md:grid-cols-[0.9fr_1.1fr]">
+        {/* Grid: Contact Info Left / Form Right */}
+        <div className="grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:gap-16">
+          {/* Left Column — Contact Info & Social */}
           <motion.div
-            className="space-y-8"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: appleEase }}
             viewport={{ once: true, margin: "-100px" }}
+            className="space-y-10"
           >
+            {/* Contact Info Cards */}
             <div className="space-y-4">
-              {contactInfo.map((contact) => (
-                <ContactItem key={contact.title} {...contact} />
+              {contactInfo.map((item) => (
+                <ContactInfoCard key={item.title} {...item} />
               ))}
             </div>
 
+            {/* Social Links */}
             <div>
-              <h3 className="text-xl font-bold text-[#F5F5F7]">Social</h3>
-              <div className="mt-4 flex gap-4">
+              <h3 className="text-sm font-semibold uppercase tracking-[0.15em] text-[#6B6B70]">
+                Find me on
+              </h3>
+              <div className="mt-5 flex gap-3">
                 {socialLinks.map((social) => {
                   const IconComponent = social.icon;
                   return (
@@ -211,11 +218,11 @@ const ContactSection = () => {
                       rel="noopener noreferrer"
                       href={social.href}
                       aria-label={social.label}
-                      className="flex h-12 w-12 items-center justify-center rounded-full border border-[#2C2C2E] bg-[#1C1C1E] text-[#86868B] transition-colors hover:border-white/[0.15] hover:text-[#F5F5F7]"
-                      whileHover={{ y: -2, scale: 1.02 }}
-                      whileTap={{ scale: 0.96 }}
+                      className="flex h-11 w-11 items-center justify-center rounded-full border border-[#2C2C2E] bg-[#1C1C1E] text-[#86868B] transition-all duration-300 hover:border-white/[0.15] hover:bg-white/[0.06] hover:text-[#F5F5F7]"
+                      whileHover={{ y: -3, scale: 1.04 }}
+                      whileTap={{ scale: 0.95 }}
                     >
-                      <IconComponent size={20} />
+                      <IconComponent size={19} />
                     </motion.a>
                   );
                 })}
@@ -223,130 +230,176 @@ const ContactSection = () => {
             </div>
           </motion.div>
 
+          {/* Right Column — Form */}
           <motion.div
-            className="rounded-[18px] border border-[#2C2C2E] bg-[#1C1C1E] p-6 md:p-8"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1, ease: appleEase }}
             viewport={{ once: true, margin: "-100px" }}
           >
-            <h2 className="mb-6 text-2xl font-bold text-[#F5F5F7]">
-              Get In Touch
-            </h2>
-
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <AnimatedInputField
-                icon={<User size={18} className="text-[#86868B]" />}
-                label="Full Name"
-                name="name"
-                value={formData.name}
-                onChange={handleInputChange}
-                placeholder="Your full name"
-                error={errors.name}
-                required
-              />
-
-              <AnimatedInputField
-                icon={<Mail size={18} className="text-[#86868B]" />}
-                label="Email Address"
-                name="email"
-                type="email"
-                value={formData.email}
-                onChange={handleInputChange}
-                placeholder="your.email@example.com"
-                error={errors.email}
-                required
-              />
-
-              <div>
-                <label className="mb-2 block text-sm font-normal text-[#86868B]">
-                  Service Interest
-                </label>
-                <select
-                  name="service"
-                  value={formData.service}
+            <div className="rounded-2xl border border-[#2C2C2E] bg-[#1C1C1E] p-6 md:p-8 lg:p-10">
+              <form onSubmit={handleSubmit} className="space-y-6">
+                {/* Name */}
+                <FormField
+                  icon={<User size={18} className="text-[#6B6B70]" />}
+                  label="Full Name"
+                  name="name"
+                  value={formData.name}
                   onChange={handleInputChange}
-                  className="w-full rounded-xl border border-[#2C2C2E] bg-[#0a0a0a] px-4 py-3 text-[#F5F5F7] outline-none transition-colors focus:border-[#2997FF]"
-                >
-                  <option value="">Select a service</option>
-                  <option value="Web Development">Web Development</option>
-                  <option value="React & Next.js Applications">
-                    React & Next.js Applications
-                  </option>
-                  <option value="Backend Development (Node.js & Express)">
-                    Backend Development (Node.js & Express)
-                  </option>
-                  <option value="Firebase Integration">
-                    Firebase Integration
-                  </option>
-                  <option value="MongoDB Database Solutions">
-                    MongoDB Database Solutions
-                  </option>
-                  <option value="Portfolio Website">Portfolio Website</option>
-                  <option value="Dashboard Development">
-                    Dashboard Development
-                  </option>
-                  <option value="eCommerce Platform">eCommerce Platform</option>
-                  <option value="Other">Other</option>
-                </select>
-              </div>
+                  placeholder="Your full name"
+                  error={errors.name}
+                  required
+                />
 
-              <div className="space-y-2">
-                <label className="block text-sm font-normal text-[#86868B]">
-                  Description <span className="text-[#2997FF]">*</span>
-                </label>
-                <div className="relative">
-                  <textarea
-                    name="description"
-                    value={formData.description}
-                    onChange={handleInputChange}
-                    rows={5}
-                    className={`w-full resize-none rounded-xl border bg-[#0a0a0a] py-3 pl-10 pr-4 text-[#F5F5F7] outline-none transition-colors focus:border-[#2997FF] ${
-                      errors.description
-                        ? "border-red-500/50"
-                        : "border-[#2C2C2E]"
-                    }`}
-                    placeholder="Tell me about your project, requirements, or questions..."
-                  />
-                  <MessageSquare
-                    className="absolute left-3 top-4 text-[#86868B]"
-                    size={18}
-                  />
+                {/* Email */}
+                <FormField
+                  icon={<Mail size={18} className="text-[#6B6B70]" />}
+                  label="Email Address"
+                  name="email"
+                  type="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  placeholder="your.email@example.com"
+                  error={errors.email}
+                  required
+                />
+
+                {/* Service Interest */}
+                <div className="space-y-2">
+                  <label className="block text-sm font-medium text-[#A1A1A6]">
+                    Service Interest
+                  </label>
+                  <div className="relative">
+                    <select
+                      name="service"
+                      value={formData.service}
+                      onChange={handleInputChange}
+                      className="w-full appearance-none rounded-xl border border-[#2C2C2E] bg-[#0a0a0a] px-4 py-3.5 pr-10 text-[#F5F5F7] outline-none transition-all duration-300 focus:border-white/[0.3] focus:ring-1 focus:ring-white/[0.1]"
+                    >
+                      <option value="" className="bg-[#0a0a0a]">
+                        Select a service
+                      </option>
+                      <option value="Web Development" className="bg-[#0a0a0a]">
+                        Web Development
+                      </option>
+                      <option
+                        value="React & Next.js Applications"
+                        className="bg-[#0a0a0a]"
+                      >
+                        React & Next.js Applications
+                      </option>
+                      <option
+                        value="Backend Development (Node.js & Express)"
+                        className="bg-[#0a0a0a]"
+                      >
+                        Backend Development (Node.js & Express)
+                      </option>
+                      <option
+                        value="Firebase Integration"
+                        className="bg-[#0a0a0a]"
+                      >
+                        Firebase Integration
+                      </option>
+                      <option
+                        value="MongoDB Database Solutions"
+                        className="bg-[#0a0a0a]"
+                      >
+                        MongoDB Database Solutions
+                      </option>
+                      <option
+                        value="Portfolio Website"
+                        className="bg-[#0a0a0a]"
+                      >
+                        Portfolio Website
+                      </option>
+                      <option
+                        value="Dashboard Development"
+                        className="bg-[#0a0a0a]"
+                      >
+                        Dashboard Development
+                      </option>
+                      <option
+                        value="eCommerce Platform"
+                        className="bg-[#0a0a0a]"
+                      >
+                        eCommerce Platform
+                      </option>
+                      <option value="Other" className="bg-[#0a0a0a]">
+                        Other
+                      </option>
+                    </select>
+                    <ChevronDown
+                      size={18}
+                      className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-[#6B6B70]"
+                    />
+                  </div>
                 </div>
-                {errors.description && (
-                  <p className="text-sm text-red-400">{errors.description}</p>
-                )}
-              </div>
 
-              <motion.button
-                type="submit"
-                disabled={isLoading}
-                className="flex w-full items-center justify-center gap-2 rounded-[980px] bg-[#2997FF] px-6 py-3 text-[17px] font-normal text-white transition-all duration-300 hover:brightness-110 hover:shadow-[0_14px_34px_rgba(41,151,255,0.22)] disabled:cursor-not-allowed disabled:opacity-50"
-                whileTap={{ scale: 0.98 }}
-              >
-                {isLoading ? (
-                  <>
-                    <div className="h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent" />
-                    <span>Sending...</span>
-                  </>
-                ) : (
-                  <>
-                    <Send size={20} />
-                    <span>Send Message</span>
-                  </>
-                )}
-              </motion.button>
-            </form>
+                {/* Description */}
+                <div className="space-y-2">
+                  <label className="block text-sm font-medium text-[#A1A1A6]">
+                    Description{" "}
+                    <span className="text-[#F5F5F7]">*</span>
+                  </label>
+                  <div className="relative">
+                    <textarea
+                      name="description"
+                      value={formData.description}
+                      onChange={handleInputChange}
+                      rows={5}
+                      placeholder="Tell me about your project, requirements, or questions..."
+                      className={`w-full resize-none rounded-xl border bg-[#0a0a0a] py-3.5 pl-10 pr-4 text-[#F5F5F7] outline-none transition-all duration-300 focus:border-white/[0.3] focus:ring-1 focus:ring-white/[0.1] ${
+                        errors.description
+                          ? "border-red-500/50"
+                          : "border-[#2C2C2E]"
+                      }`}
+                    />
+                    <MessageSquare
+                      className="absolute left-3.5 top-4 text-[#6B6B70]"
+                      size={18}
+                    />
+                  </div>
+                  {errors.description && (
+                    <p className="text-sm text-red-400">{errors.description}</p>
+                  )}
+                </div>
 
-            {message.text && (
-              <div
-                className={`mt-6 text-center text-base ${
-                  message.type === "success" ? "text-green-400" : "text-red-400"
-                }`}
-              >
-                {message.text}
-              </div>
-            )}
+                {/* Submit */}
+                <motion.button
+                  type="submit"
+                  disabled={isLoading}
+                  className="flex w-full items-center justify-center gap-2.5 rounded-[980px] bg-white px-6 py-3.5 text-[16px] font-medium text-black transition-all duration-300 hover:bg-white/90 hover:shadow-[0_12px_30px_rgba(255,255,255,0.15)] active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:shadow-none"
+                  whileTap={{ scale: 0.98 }}
+                >
+                  {isLoading ? (
+                    <>
+                      <div className="h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent" />
+                      <span>Sending...</span>
+                    </>
+                  ) : (
+                    <>
+                      <Send size={19} />
+                      <span>Send Message</span>
+                    </>
+                  )}
+                </motion.button>
+              </form>
+
+              {/* Status Message */}
+              {message.text && (
+                <motion.div
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className={`mt-6 rounded-xl border p-4 text-center text-sm ${
+                    message.type === "success"
+                      ? "border-green-500/20 bg-green-500/5 text-green-400"
+                      : "border-red-500/20 bg-red-500/5 text-red-400"
+                  }`}
+                >
+                  {message.text}
+                </motion.div>
+              )}
+            </div>
           </motion.div>
         </div>
       </div>
@@ -354,22 +407,25 @@ const ContactSection = () => {
   );
 };
 
-const AnimatedInputField = ({ icon, label, optional, error, required, ...props }) => {
+/* ─── Reusable Form Field ─── */
+const FormField = ({ icon, label, error, required, ...props }) => {
   return (
     <div className="space-y-2">
-      <label className="block text-sm font-normal text-[#86868B]">
-        {label} {required && <span className="text-[#2997FF]">*</span>}
-        {optional && <span className="ml-1 text-[#86868B]">(Optional)</span>}
+      <label className="block text-sm font-medium text-[#A1A1A6]">
+        {label}{" "}
+        {required && <span className="text-[#F5F5F7]">*</span>}
       </label>
       <div className="relative">
         <input
-          className={`w-full rounded-xl border bg-[#0a0a0a] py-3 pl-10 pr-4 text-[#F5F5F7] outline-none transition-colors focus:border-[#2997FF] ${
+          className={`w-full rounded-xl border bg-[#0a0a0a] py-3.5 pl-10 pr-4 text-[#F5F5F7] outline-none transition-all duration-300 focus:border-white/[0.3] focus:ring-1 focus:ring-white/[0.1] ${
             error ? "border-red-500/50" : "border-[#2C2C2E]"
           }`}
           {...props}
         />
         {icon && (
-          <div className="absolute left-3 top-1/2 -translate-y-1/2">{icon}</div>
+          <div className="absolute left-3.5 top-1/2 -translate-y-1/2">
+            {icon}
+          </div>
         )}
       </div>
       {error && <p className="text-sm text-red-400">{error}</p>}
@@ -377,17 +433,22 @@ const AnimatedInputField = ({ icon, label, optional, error, required, ...props }
   );
 };
 
-const ContactItem = ({ icon, title, detail, href }) => {
+/* ─── Contact Info Card ─── */
+const ContactInfoCard = ({ icon, title, detail, href }) => {
   const content = (
     <motion.div
-      className="flex items-start gap-4 rounded-[18px] border border-[#2C2C2E] bg-[#1C1C1E] p-5 transition-all duration-300 hover:border-white/[0.15]"
-      whileHover={{ y: -4, scale: 1.02 }}
+      className="group flex items-center gap-4 rounded-xl border border-[#2C2C2E] bg-[#1C1C1E] p-5 transition-all duration-300 hover:border-white/[0.12] hover:bg-white/[0.03]"
+      whileHover={{ y: -2 }}
       transition={{ duration: 0.3, ease: appleEase }}
     >
-      <div className="mt-1 shrink-0">{icon}</div>
-      <div>
-        <h3 className="font-bold text-[#F5F5F7]">{title}</h3>
-        <p className="mt-1 text-[17px] leading-[1.6] text-[#86868B]">
+      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white/[0.08] text-[#F5F5F7] transition-colors group-hover:bg-white/[0.15]">
+        {icon}
+      </div>
+      <div className="min-w-0">
+        <p className="text-xs font-semibold uppercase tracking-[0.1em] text-[#6B6B70]">
+          {title}
+        </p>
+        <p className="mt-0.5 truncate text-[15px] font-medium text-[#F5F5F7]">
           {detail}
         </p>
       </div>
@@ -396,7 +457,7 @@ const ContactItem = ({ icon, title, detail, href }) => {
 
   if (href) {
     return (
-      <a href={href} target="_blank" rel="noopener noreferrer">
+      <a href={href} target="_blank" rel="noopener noreferrer" className="block">
         {content}
       </a>
     );

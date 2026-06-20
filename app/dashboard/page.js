@@ -5,31 +5,32 @@ import StatCard from "@/components/dashboard/StatCard";
 import AnalyticsDashboard from "@/components/dashboard/AnalyticsDashboard";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../../config/firebase.config";
+import Link from "next/link";
 
 export default function DashboardPage() {
   const [stats, setStats] = useState({
     users: 0,
-    caseStudies: 0,
-    latestWorks: 0,
+    projects: 0,
+    blogs: 0,
+    publishedBlogs: 0,
   });
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        // Fetch users count
         const usersSnapshot = await getDocs(collection(db, "users"));
-        const caseStudiesSnapshot = await getDocs(
-          collection(db, "case_studies")
-        );
-        const latestWorksSnapshot = await getDocs(
-          collection(db, "latest_works")
-        );
+        const projectsSnapshot = await getDocs(collection(db, "projects"));
+        const blogsSnapshot = await getDocs(collection(db, "blogs"));
+
+        const allBlogs = blogsSnapshot.docs.map((doc) => doc.data());
+        const publishedBlogs = allBlogs.filter((b) => b.published).length;
 
         setStats({
           users: usersSnapshot.size,
-          caseStudies: caseStudiesSnapshot.size,
-          latestWorks: latestWorksSnapshot.size,
+          projects: projectsSnapshot.size,
+          blogs: blogsSnapshot.size,
+          publishedBlogs,
         });
       } catch (error) {
         console.error("Error fetching stats:", error);
@@ -44,21 +45,36 @@ export default function DashboardPage() {
   if (loading) {
     return (
       <div className="flex justify-center items-center h-64">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-purple-500"></div>
+        <div className="h-8 w-8 animate-spin rounded-full border-2 border-white/20 border-t-white" />
       </div>
     );
   }
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-10">
+      {/* Stats Grid */}
       <div>
-        <h1 className="text-3xl font-bold mb-6">
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500">
-            Dashboard Overview
-          </span>
+        <h1 className="text-[clamp(28px,3vw,36px)] font-bold tracking-[-0.02em] text-[#F5F5F7] mb-8">
+          Dashboard
         </h1>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <Link href="/dashboard/blogs">
+            <StatCard
+              title="Blog Posts"
+              value={stats.blogs}
+              description={`${stats.publishedBlogs} published, ${stats.blogs - stats.publishedBlogs} drafts`}
+              icon="📝"
+            />
+          </Link>
+          <Link href="/dashboard/projects">
+            <StatCard
+              title="Projects"
+              value={stats.projects}
+              description="Uploaded projects"
+              icon="🗂️"
+            />
+          </Link>
           <StatCard
             title="Total Users"
             value={stats.users}
@@ -66,26 +82,18 @@ export default function DashboardPage() {
             icon="👥"
           />
           <StatCard
-            title="Case Studies"
-            value={stats.caseStudies}
-            description="Total case studies"
-            icon="📁"
-          />
-          <StatCard
-            title="Latest Works"
-            value={stats.latestWorks}
-            description="Uploaded projects"
-            icon="🖼️"
+            title="Analytics"
+            value="Live"
+            description="Real-time insights"
+            icon="📊"
           />
         </div>
       </div>
 
       {/* Analytics Dashboard */}
       <div>
-        <h2 className="text-3xl font-bold mb-6">
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500">
-            Analytics Insights
-          </span>
+        <h2 className="text-[clamp(22px,2.5vw,28px)] font-semibold tracking-[-0.02em] text-[#F5F5F7] mb-6">
+          Analytics
         </h2>
         <AnalyticsDashboard />
       </div>

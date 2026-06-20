@@ -1,16 +1,16 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap");
 @import "tailwindcss";
 @plugin "daisyui";
-
 @tailwind utilities;
 
 :root {
-  --background: #0a0a0a;
+  --background: #000000;
   --foreground: #f5f5f7;
   --muted: #86868b;
   --surface: #1c1c1e;
   --border: #2c2c2e;
-  --accent: #2997ff;
+  --accent: #f5f5f7;
   --apple-ease: cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
@@ -25,6 +25,38 @@ body {
     "SF Pro Text", "Helvetica Neue", Arial, sans-serif;
   padding-top: 72px;
   letter-spacing: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Bengali text support */
+[dir="auto"],
+[lang="bn"] {
+  font-family: "Noto Sans Bengali", "Inter", -apple-system, sans-serif;
+}
+
+/* Selection styling */
+::selection {
+  background: rgba(245, 245, 247, 0.15);
+  color: #ffffff;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2c2c2e;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #3a3a3c;
 }
 
 @layer utilities {
@@ -44,10 +76,53 @@ body {
   .animate-rotate {
     animation: rotate 12s linear infinite;
   }
+
+  /* Glass effect */
+  .glass {
+    background: rgba(28, 28, 30, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .glass-hover {
+    transition: all 0.3s var(--apple-ease);
+  }
+  
+  .glass-hover:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.12);
+  }
+
+  /* Premium text gradient - white to gray */
+  .text-gradient {
+    background: linear-gradient(135deg, #ffffff 0%, #86868b 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Smooth image rendering */
+  .img-premium {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+
+  /* Subtle white glow */
+  .glow-white {
+    box-shadow: 0 0 40px rgba(255, 255, 255, 0.05);
+  }
+
+  .hover-lift {
+    transition: all 0.4s var(--apple-ease);
+  }
+  .hover-lift:hover {
+    transform: translateY(-4px);
+  }
 }
 
 .glass-navbar {
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
@@ -60,7 +135,7 @@ body {
   bottom: -6px;
   width: 100%;
   height: 1px;
-  background: var(--accent);
+  background: #f5f5f7;
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 300ms var(--apple-ease);
@@ -68,4 +143,51 @@ body {
 
 .nav-link-underline:hover::after {
   transform: scaleX(1);
+}
+
+/* Focus styles for accessibility */
+*:focus-visible {
+  outline: 2px solid rgba(245, 245, 247, 0.3);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Smooth anchor scrolling */
+[id] {
+  scroll-margin-top: 80px;
+}
+
+/* Animation for page load */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.7s var(--apple-ease);
+}
+
+/* Subtle border gradient for premium cards */
+.card-border-premium {
+  border: 1px solid transparent;
+  background-clip: padding-box;
+  position: relative;
+}
+.card-border-premium::before {
+  content: "";
+  position: absolute;
+  top: 0; right: 0; bottom: 0; left: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.02));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
 }
