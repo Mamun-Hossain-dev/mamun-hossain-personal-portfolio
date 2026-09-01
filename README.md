@@ -1,4 +1,4 @@
-# Tanzil Hossain - Portfolio Website
+# Mamun Hossain - Portfolio Website
 
 This is the repository for my personal portfolio website, built with Next.js and Firebase. The website showcases my projects, skills, and provides a way for visitors to contact me. It also includes a private dashboard for managing content.
 
