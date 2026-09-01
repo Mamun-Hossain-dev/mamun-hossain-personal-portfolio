@@ -1,22 +1,19 @@
 import About from "@/components/About";
-import Hero from "@/components/Hero";
-import WorkExperience from "@/components/WorkExperience";
-import Services from "@/components/Services";
+import Contact from "@/components/Contact";
 import FeaturedProjects from "@/components/FeaturedProjects";
-import BlogsSection from "@/components/BlogsSection";
-import React from "react";
+import Hero from "@/components/Hero";
+import Services from "@/components/Services";
+import WorkExperience from "@/components/WorkExperience";
 
-const page = () => {
+export default function HomePage() {
   return (
-    <div className="min-h-screen bg-[#000000]">
+    <main>
       <Hero />
       <About />
-      <WorkExperience />
       <Services />
+      <WorkExperience />
       <FeaturedProjects />
-      <BlogsSection />
-    </div>
+      <Contact />
+    </main>
   );
-};
-
-export default page;
+}

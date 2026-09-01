@@ -1,90 +1,43 @@
 import "./globals.css";
 import ClientLayout from "@/components/ClientLayout";
-import Script from "next/script";
 
 export const metadata = {
-  metadataBase: new URL("https://mamun-hossain.vercel.app"),
-  title: "Mamun Hossain - Full Stack Web Developer",
+  title: "Mamun Hossain — Backend-Focused Full Stack Developer",
   description:
-    "Mamun Hossain is a Full-Stack Web Developer building scalable, high-performance web applications with React, Next.js, and Node.js.",
+    "Mamun Hossain is a backend-focused full-stack developer building event-driven, production-grade systems with Node.js, NestJS, PostgreSQL, Redis, and RabbitMQ.",
   keywords: [
     "Mamun Hossain",
+    "Backend Developer",
     "Full Stack Developer",
-    "Web Developer",
-    "React",
-    "Next.js",
     "Node.js",
-    "Express.js",
+    "NestJS",
     "PostgreSQL",
+    "RabbitMQ",
+    "Redis",
     "Prisma",
-    "MongoDB",
-    "Firebase",
     "Portfolio",
     "Bangladesh",
-    "JavaScript",
-    "MERN Stack",
-    "Frontend",
-    "Backend",
-    "SEO",
-    "Web Application",
   ],
   openGraph: {
-    title: "Mamun Hossain - Full Stack Web Developer",
+    title: "Mamun Hossain — Backend-Focused Full Stack Developer",
     description:
-      "Full-Stack Web Developer building scalable, high-performance web applications with React, Next.js, and Node.js.",
-    url: "https://mamun-hossain.vercel.app",
-    siteName: "Mamun Hossain's Portfolio",
-    images: [
-      {
-        url: "/images/mamun.jpg",
-        width: 800,
-        height: 600,
-      },
-      {
-        url: "/images/mamun.jpg",
-        width: 1800,
-        height: 1600,
-        alt: "Mamun Hossain Portfolio",
-      },
-    ],
+      "Building event-driven, production-grade systems with Node.js, NestJS, PostgreSQL, Redis, and RabbitMQ.",
+    siteName: "Mamun Hossain",
     locale: "en_US",
     type: "website",
   },
   twitter: {
-    card: "summary_large_image",
-    title: "Mamun Hossain - Full Stack Web Developer",
+    card: "summary",
+    title: "Mamun Hossain — Backend-Focused Full Stack Developer",
     description:
-      "Full-Stack Web Developer building scalable, high-performance web applications with React, Next.js, and Node.js.",
-    images: ["/images/mamun.jpg"],
+      "Building event-driven, production-grade systems with Node.js, NestJS, PostgreSQL, Redis, and RabbitMQ.",
   },
 };
 
 export default function RootLayout({ children }) {
-  const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
-
   return (
     <html lang="en">
-      <head>
-        {GA_MEASUREMENT_ID && (
-          <>
-            <Script
-              src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
-              strategy="afterInteractive"
-            />
-            <Script id="google-analytics" strategy="afterInteractive">
-              {`
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-                gtag('config', '${GA_MEASUREMENT_ID}', {
-                  page_path: window.location.pathname,
-                });
-              `}
-            </Script>
-          </>
-        )}
-      </head>
-      <body className="antialiased">
+      <body>
         <ClientLayout>{children}</ClientLayout>
       </body>
     </html>

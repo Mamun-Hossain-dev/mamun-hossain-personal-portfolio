@@ -1,195 +1,102 @@
-"use client";
-
-import { motion } from "framer-motion";
-import { ArrowUpRight, Github } from "lucide-react";
-
-const appleEase = [0.25, 0.1, 0.25, 1];
+import { ArrowUpRight, Github, Layers3, Zap } from "lucide-react";
+import Reveal from "./Reveal";
 
 const projects = [
   {
-    title: "ClinicallyManic",
-    subtitle: "Enterprise-Grade Full-Stack Monorepo",
+    number: "01",
+    title: "DeviceDock",
+    subtitle: "Production e-commerce platform",
     description:
-      "Consumer frontend, admin dashboard, and Express API — all containerized and independently deployable with Docker Compose.",
-    highlights: [
-      "Redis cache-aside layer cutting API response latency by ~95% (50ms → 2ms)",
-      "Triple-layer payment idempotency — zero duplicate charges in production",
-      "Multi-stage Docker builds: 1.25 GB → 128 MB (~90% reduction)",
-    ],
-    tech: [
-      "Next.js 14",
-      "TypeScript",
-      "PostgreSQL",
-      "Prisma",
-      "Redis",
-      "Stripe",
-      "Docker",
-      "Nginx",
-    ],
-    liveUrl: "https://clinicallymanic-frontend.vercel.app/",
-    repoUrl: "https://github.com/Mamun-Hossain-dev",
+      "A full-stack storefront and modular backend for catalog, cart, authentication, checkout, and order management.",
+    outcome:
+      "Redis caching brought the product API down to about 17ms in testing, while RabbitMQ and idempotent payment flows kept checkout reliable.",
+    tech: ["NestJS", "PostgreSQL", "Redis", "RabbitMQ", "Next.js", "Docker"],
+    liveUrl: "https://devicedock.duckdns.org",
+    repoUrl: "https://github.com/Mamun-Hossain-dev/devicedock",
+    icon: Zap,
   },
   {
-    title: "Wasabi Gaming",
-    subtitle: "Full-Stack Monorepo with Real-Time AI Integration",
+    number: "02",
+    title: "Humidor411",
+    subtitle: "Retail operations platform",
     description:
-      "User site, admin dashboard, and backend API — featuring webhook-driven async pipelines and real-time streaming.",
-    highlights: [
-      "Webhook-driven async pipeline for third-party AI with real-time Socket.io streaming",
-      "MongoDB compound indexing improving query performance by ~65%",
-      "GitHub Actions CI/CD with SSH-based VPS — zero-downtime releases",
-    ],
-    tech: [
-      "Next.js 14",
-      "TypeScript",
-      "MongoDB",
-      "Socket.io",
-      "Stripe",
-      "Docker",
-      "GitHub Actions",
-    ],
-    liveUrl: "https://wasabi-gaming-final-frontend.vercel.app/",
-    repoUrl: "https://github.com/Mamun-Hossain-dev",
+      "Three connected applications for premium cigar retailers: inventory, humidor mapping, subscriptions, payments, and storefronts.",
+    outcome:
+      "A reusable Master Cigar Database keeps shared catalog data normalized while each retailer owns its inventory and pricing.",
+    tech: ["NestJS", "MongoDB", "Next.js", "Stripe", "Docker"],
+    liveUrl: "https://humidor411.com",
+    repoUrl: "https://github.com/Mamun-Hossain-dev/Humidor411",
+    icon: Layers3,
   },
 ];
 
-const FeaturedProjects = () => {
+export default function FeaturedProjects() {
   return (
-    <section className="border-t border-white/[0.06] bg-[#000000] py-32">
-      <div className="mx-auto max-w-6xl px-6">
-        {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: appleEase }}
-          viewport={{ once: true, margin: "-100px" }}
-          className="mb-20 text-center"
-        >
-          <p className="mb-5 text-xs font-semibold uppercase tracking-[0.2em] text-[#6B6B70]">
-            Featured Projects
+    <section id="work" className="section section-dark work-section">
+      <div className="site-shell">
+        <Reveal className="section-intro work-intro">
+          <div>
+            <p className="eyebrow">Selected work</p>
+            <h2 className="section-title">
+              A few systems I&apos;ve <em>shipped.</em>
+            </h2>
+          </div>
+          <p className="section-lead">
+            Real products, real constraints, and the engineering decisions that
+            made them dependable.
           </p>
-          <h2 className="max-w-3xl mx-auto text-[clamp(36px,5vw,52px)] font-bold leading-[1.08] tracking-[-0.03em] text-[#F5F5F7]">
-            Production systems {"I've"} architected and shipped.
-          </h2>
-          <p className="mt-6 max-w-xl mx-auto text-[16px] leading-[1.7] text-[#6B6B70]">
-            Each project reflects real engineering decisions — caching strategies,
-            payment idempotency, CI/CD pipelines, and containerized deployments.
-          </p>
-        </motion.div>
+        </Reveal>
 
-        {/* Projects */}
-        <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-          {projects.map((project, index) => (
-            <motion.article
-              key={project.title}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{
-                duration: 0.8,
-                delay: index * 0.12,
-                ease: appleEase,
-              }}
-              viewport={{ once: true, margin: "-100px" }}
-              className="group relative rounded-3xl border border-white/[0.06] bg-[#0a0a0a] p-8 transition-all duration-500 hover:border-white/[0.12] hover:bg-[#0d0d0d] hover:shadow-[0_30px_80px_rgba(0,0,0,0.6)]"
-            >
-              <div className="relative z-10">
-                {/* Header */}
-                <div className="flex items-start justify-between mb-6">
-                  <div>
-                    <div className="inline-flex items-center gap-2 rounded-full border border-white/[0.06] bg-white/[0.03] px-3.5 py-1.5 text-[11px] font-medium text-[#6B6B70] tracking-wider uppercase">
-                      Featured
+        <div className="project-list">
+          {projects.map(({ number, title, subtitle, description, outcome, tech, liveUrl, repoUrl, icon: Icon }, index) => (
+            <Reveal key={title} delay={index * 100}>
+              <article className="project-card">
+                <div className="project-number">{number}</div>
+                <div className="project-content">
+                  <div className="project-heading">
+                    <div>
+                      <p className="project-subtitle">{subtitle}</p>
+                      <h3>{title}</h3>
                     </div>
-                    <h3 className="mt-4 text-2xl font-bold text-[#F5F5F7]">
-                      {project.title}
-                    </h3>
-                    <p className="mt-1 text-sm text-[#6B6B70]">
-                      {project.subtitle}
-                    </p>
+                    <div className="project-icon" aria-hidden="true">
+                      <Icon size={21} strokeWidth={1.5} />
+                    </div>
                   </div>
-
-                  {/* Links */}
-                  <div className="flex gap-2">
-                    <motion.a
-                      href={project.repoUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      whileHover={{ y: -2 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="rounded-full border border-white/[0.12] bg-white/[0.04] p-2.5 text-[#F5F5F7] transition-all hover:bg-white/[0.08]"
-                      aria-label={`${project.title} source code`}
-                    >
-                      <Github size={18} />
-                    </motion.a>
-                    <motion.a
-                      href={project.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      whileHover={{ y: -2 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="rounded-full bg-white p-2.5 text-[#000000] transition-all hover:bg-white/90"
-                      aria-label={`${project.title} live demo`}
-                    >
-                      <ArrowUpRight size={18} />
-                    </motion.a>
+                  <p className="project-description">{description}</p>
+                  <div className="project-outcome">
+                    <span>Outcome</span>
+                    <p>{outcome}</p>
+                  </div>
+                  <div className="project-footer">
+                    <div className="tag-list">
+                      {tech.map((item) => (
+                        <span key={item}>{item}</span>
+                      ))}
+                    </div>
+                    <div className="project-links">
+                      <a href={repoUrl} target="_blank" rel="noopener noreferrer">
+                        <Github size={16} aria-hidden="true" />
+                        <span>Source</span>
+                      </a>
+                      <a href={liveUrl} target="_blank" rel="noopener noreferrer">
+                        <span>Live site</span>
+                        <ArrowUpRight size={16} aria-hidden="true" />
+                      </a>
+                    </div>
                   </div>
                 </div>
-
-                {/* Description */}
-                <p className="text-[15px] leading-[1.7] text-[#A1A1A6]">
-                  {project.description}
-                </p>
-
-                {/* Highlights */}
-                <ul className="mt-6 space-y-3">
-                  {project.highlights.map((point) => (
-                    <li key={point} className="flex gap-3 text-sm text-[#86868B]">
-                      <span className="mt-[6px] h-1 w-1 flex-none rounded-full bg-white/40" />
-                      <span>{point}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                {/* Tech Stack */}
-                <div className="mt-6 flex flex-wrap gap-2">
-                  {project.tech.map((tech) => (
-                    <span
-                      key={tech}
-                      className="rounded-full bg-white/[0.04] px-3 py-1 text-[11px] text-[#6B6B70]"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </motion.article>
+              </article>
+            </Reveal>
           ))}
         </div>
 
-        {/* View More Link */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.3, ease: appleEase }}
-          viewport={{ once: true, margin: "-100px" }}
-          className="mt-14 text-center"
-        >
-          <a
-            href="https://github.com/Mamun-Hossain-dev"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group inline-flex items-center gap-2 rounded-full border border-white/[0.12] px-6 py-3 text-[14px] font-medium text-[#F5F5F7] transition-all hover:bg-white/[0.04]"
-          >
-            <Github size={18} />
-            <span>View more on GitHub</span>
-            <ArrowUpRight
-              size={15}
-              className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-            />
+        <Reveal className="work-footer" delay={150}>
+          <span>More experiments and source code</span>
+          <a className="text-link" href="https://github.com/Mamun-Hossain-dev" target="_blank" rel="noopener noreferrer">
+            Visit GitHub <ArrowUpRight size={16} aria-hidden="true" />
           </a>
-        </motion.div>
+        </Reveal>
       </div>
     </section>
   );
-};
-
-export default FeaturedProjects;
+}
