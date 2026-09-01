@@ -1,118 +1,89 @@
-"use client";
+import { ArrowUpRight, Blocks, Database, Gauge, ShieldCheck } from "lucide-react";
+import Reveal from "./Reveal";
 
-import { motion } from "framer-motion";
-import Image from "next/image";
+const strengths = [
+  {
+    icon: Blocks,
+    number: "01",
+    title: "Structure before scale",
+    text: "Modular, domain-driven backends with boundaries that stay understandable as products grow.",
+  },
+  {
+    icon: Gauge,
+    number: "02",
+    title: "Performance with intent",
+    text: "Caching, indexes, and measured trade-offs that turn slow paths into dependable ones.",
+  },
+  {
+    icon: ShieldCheck,
+    number: "03",
+    title: "Reliability by design",
+    text: "Idempotent payments, clear contracts, and asynchronous workflows built for real edge cases.",
+  },
+  {
+    icon: Database,
+    number: "04",
+    title: "Own the whole path",
+    text: "From a responsive Next.js interface to the API, database, container, and deployment underneath.",
+  },
+];
 
-const appleEase = [0.25, 0.1, 0.25, 1];
-
-const About = () => {
-  const skills = [
-    "TypeScript",
-    "JavaScript (ES2024)",
-    "C++",
-    "HTML5",
-    "CSS3",
-    "React.js",
-    "Next.js 14 (App Router)",
-    "Tailwind CSS",
-    "Shadcn/UI",
-    "Zustand",
-    "TanStack Query",
-    "React Hook Form",
-    "Zod",
-    "Node.js",
-    "Express.js",
-    "NestJS",
-    "REST APIs",
-    "JWT",
-    "NextAuth",
-    "Stripe (Webhooks)",
-    "Socket.io",
-    "Nodemailer",
-    "PostgreSQL",
-    "MongoDB",
-    "Prisma ORM",
-    "Mongoose",
-    "Redis (Caching, Rate Limiting)",
-    "Docker",
-    "Docker Compose",
-    "Nginx",
-    "GitHub Actions (CI/CD)",
-    "VPS Deployment",
-    "Linux/Ubuntu",
-    "AWS",
-    "Git",
-    "Postman",
-    "Swagger/OpenAPI",
-    "Cloudinary",
-    "Firebase",
-  ];
-
+export default function About() {
   return (
-    <section
-      id="about"
-      className="border-t border-white/[0.08] bg-[#0a0a0a] py-32"
-    >
-      <div className="mx-auto grid max-w-6xl items-center gap-16 px-6 md:grid-cols-[0.9fr_1.1fr]">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: appleEase }}
-          viewport={{ once: true, margin: "-100px" }}
-          className="hidden justify-center md:flex"
-        >
-          <div className="relative aspect-square w-full max-w-[420px] overflow-hidden rounded-[18px] border border-[#2C2C2E] bg-[#1C1C1E]">
-            <Image
-              src="/images/mamun.jpeg"
-              alt="Mamun Hossain"
-              fill
-              sizes="420px"
-              className="object-cover"
-            />
+    <section id="about" className="section section-soft">
+      <div className="site-shell">
+        <Reveal className="section-intro about-intro">
+          <div>
+            <p className="eyebrow">About the engineer</p>
+            <h2 className="section-title">
+              I care about the part users <em>never see.</em>
+            </h2>
           </div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: appleEase }}
-          viewport={{ once: true, margin: "-100px" }}
-        >
-          <p className="mb-4 text-xs font-bold uppercase tracking-widest text-[#86868B]">
-            About
-          </p>
-          <h2 className="text-[clamp(40px,6vw,48px)] font-bold leading-tight tracking-[-0.03em] text-[#F5F5F7]">
-            Full-Stack Developer
-          </h2>
-          <p className="mt-6 text-[17px] leading-[1.6] text-[#86868B]">
-            I work with <strong className="text-[#F5F5F7]">React</strong> and{" "}
-            <strong className="text-[#F5F5F7]">Next.js</strong> on the frontend, and{" "}
-            <strong className="text-[#F5F5F7]">Node.js</strong> on the backend — designing
-            modular architectures, optimizing systems under real load, and shipping
-            production-ready software. I integrate AI-assisted development into my workflow
-            to move faster and own projects end-to-end, from API design through deployment
-            on VPS.
-          </p>
-
-          <div className="mt-10">
-            <h3 className="text-xl font-bold text-[#F5F5F7]">
-              Technical Skills
-            </h3>
-            <div className="mt-5 flex flex-wrap gap-2">
-              {skills.map((skill) => (
-                <span
-                  key={skill}
-                  className="rounded-full bg-[#2C2C2E] px-3 py-1 text-xs text-[#86868B]"
-                >
-                  {skill}
-                </span>
-              ))}
-            </div>
+          <div className="about-summary">
+            <p>
+              I build the systems behind useful products: APIs that stay clear,
+              data flows that stay consistent, and infrastructure that does not
+              get in the team&apos;s way.
+            </p>
+            <p>
+              My strongest work sits at the intersection of backend architecture,
+              product thinking, and the discipline to ship. I&apos;m currently
+              deepening my understanding of AWS and distributed system design.
+            </p>
+            <a className="text-link" href="#capabilities">
+              How I work <ArrowUpRight size={16} aria-hidden="true" />
+            </a>
           </div>
-        </motion.div>
+        </Reveal>
+
+        <div className="strength-grid">
+          {strengths.map(({ icon: Icon, number, title, text }, index) => (
+            <Reveal key={title} delay={index * 70}>
+              <article className="strength-card">
+                <div className="strength-topline">
+                  <Icon size={20} strokeWidth={1.5} aria-hidden="true" />
+                  <span>{number}</span>
+                </div>
+                <h3>{title}</h3>
+                <p>{text}</p>
+              </article>
+            </Reveal>
+          ))}
+        </div>
+
+        <Reveal className="about-footnote" delay={120}>
+          <div className="education-mark" aria-hidden="true">
+            <span />
+            <span />
+            <span />
+          </div>
+          <p>
+            B.Sc. in Computer Science and Engineering · Northern University
+            Bangladesh · 2023–2027
+          </p>
+          <span className="footnote-extra">100+ LeetCode problems solved</span>
+        </Reveal>
       </div>
     </section>
   );
-};
-
-export default About;
+}
